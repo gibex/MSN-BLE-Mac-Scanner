@@ -47,8 +47,7 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
             updateStatusLabel("Not Scanning")
             myCentralManager.stopScan()
         
-            fullPeripheralArray = [("","","","")]
-            cleanAndSortedArray = [("","","","")]
+            cleanAndSortedArray.removeAll()
             tableView.reloadData()
         }
     }
@@ -157,24 +156,18 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
     
-        // Refresh Entry or Make an New Entry into Dictionary
             let myUUIDString = peripheral.identifier.UUIDString
             let myRSSIString = String(RSSI.intValue)
             let myNameString = peripheral.name
-//        var myAdvertisedServices = peripheral.services
-        
-      //  var myServices1 = peripheral.services
-      //  var serviceString = " service string "
-        
-//        var myArray = advertisementData
             let advertString = "\(advertisementData)"
         
-       
-        
+//        var myAdvertisedServices = peripheral.services
+      //  var myServices1 = peripheral.services
+      //  var serviceString = " service string "
+//        var myArray = advertisementData
      //   serviceString = "service: \(myArray)"
      //   println(serviceString)
      //   updateOutputText("service:" + serviceString)
-            
     
             updateOutputText("\r")
             updateOutputText("UUID: " + myUUIDString)

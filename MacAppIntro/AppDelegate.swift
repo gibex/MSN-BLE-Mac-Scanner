@@ -2,8 +2,6 @@
 //  AppDelegate.swift
 //  MacAppIntro
 //
-//  Created by GrownYoda on 4/6/15.
-//  Copyright (c) 2015 yuryg. All rights reserved.
 //
 
 import Cocoa
