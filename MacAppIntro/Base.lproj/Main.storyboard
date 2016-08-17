@@ -642,7 +642,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="BLE_Mac_Scanner" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="MSN_BLE_Mac_Scanner" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -668,13 +668,13 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="BLE_Mac_Scanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="MSN_BLE_Mac_Scanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1222" height="1011"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1321" height="1011"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ILF-bg-8w7">
-                                <rect key="frame" x="146" y="969" width="246" height="22"/>
+                            <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ILF-bg-8w7">
+                                <rect key="frame" x="245" y="969" width="246" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="246" id="LMK-7G-VgO"/>
                                     <constraint firstAttribute="height" constant="22" id="qtG-uY-wd5"/>
@@ -685,8 +685,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cbJ-PQ-zkt">
-                                <rect key="frame" x="34" y="954" width="300" height="37"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbJ-PQ-zkt">
+                                <rect key="frame" x="133" y="954" width="300" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="296" id="I87-4Y-RCX"/>
                                 </constraints>
@@ -696,8 +696,8 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="xiT-eS-zZC">
-                                <rect key="frame" x="677" y="948" width="238" height="47"/>
+                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xiT-eS-zZC">
+                                <rect key="frame" x="776" y="948" width="238" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="234" id="dwQ-9A-8qC"/>
                                 </constraints>
@@ -709,8 +709,8 @@
                                     </connections>
                                 </buttonCell>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="6Mr-qv-Ydv">
-                                <rect key="frame" x="435" y="948" width="238" height="47"/>
+                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Mr-qv-Ydv">
+                                <rect key="frame" x="534" y="948" width="238" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="234" id="MLx-zT-tEn"/>
                                 </constraints>
@@ -722,8 +722,8 @@
                                     <action selector="refreshButton:" target="XfG-lQ-9wD" id="6sZ-EM-EXH"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ET6-wl-45C">
-                                <rect key="frame" x="36" y="20" width="1179" height="582"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ET6-wl-45C">
+                                <rect key="frame" x="135" y="20" width="1179" height="582"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="582" id="CYn-Z1-fZp"/>
                                 </constraints>
@@ -733,8 +733,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2K-pk-Cwv">
-                                <rect key="frame" x="36" y="610" width="1179" height="322"/>
+                            <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2K-pk-Cwv">
+                                <rect key="frame" x="135" y="610" width="1179" height="322"/>
                                 <clipView key="contentView" id="Wcy-Wh-nsR">
                                     <rect key="frame" x="1" y="0.0" width="1177" height="321"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -785,8 +785,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn width="696" minWidth="10" maxWidth="3.4028234663852886e+38" id="3jd-mp-tuQ" userLabel="forth">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Services1">
+                                                <tableColumn width="690.35020765669901" minWidth="10" maxWidth="3.4028234663852886e+38" id="3jd-mp-tuQ" userLabel="forth">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Services">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -807,7 +807,7 @@
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Oa3-XR-98Z">
-                                    <rect key="frame" x="1" y="7" width="0.0" height="16"/>
+                                    <rect key="frame" x="1" y="306" width="1177" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="HZF-3u-2te">
@@ -850,7 +850,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="496" y="1122.5"/>
+            <point key="canvasLocation" x="446.5" y="1122.5"/>
         </scene>
     </scenes>
     <resources>

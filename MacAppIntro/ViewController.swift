@@ -15,10 +15,8 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
 
     //  BLE Stuff
     var myCentralManager = CBCentralManager()
-    var peripheralArray = [CBPeripheral]()
 
-    var fullPeripheralArray:[(String, String, String, String)] = []
-    var cleanAndSortedArray: [(String, String, String, String)] = []
+    var peripheralArray:[MotosurfPeripheral] = []
 
     
     //  UI Stuff
@@ -47,7 +45,7 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
             updateStatusLabel("Not Scanning")
             myCentralManager.stopScan()
         
-            cleanAndSortedArray.removeAll()
+            peripheralArray.removeAll()
             tableView.reloadData()
         }
     }
@@ -69,38 +67,33 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
     // NSTableView
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return cleanAndSortedArray.count
+        return peripheralArray.count
     }
     
     
-    
     func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
-
+        
         if tableColumn?.identifier == "first" {
-            let myString = cleanAndSortedArray[row].0
-            return myString
+            print(tableColumn?.identifier)
+            return peripheralArray[row].UUID
         }
         if tableColumn?.identifier == "second"{
-            let myString = "\(cleanAndSortedArray[row].1)"
-            return myString
+            return String(peripheralArray[row].RSSI)
         }
       
         if tableColumn?.identifier == "third"{
-            let myString = "\(cleanAndSortedArray[row].2)"
-            return myString
+            return peripheralArray[row].name
 
         }
     
         if tableColumn?.identifier == "forth"{
-            let myString = "\(cleanAndSortedArray[row].3)"
-            return myString
+            return "\(peripheralArray[row].advertisementData)"
             
         }
             
             
         else{
-            let myString = "\(cleanAndSortedArray[row].3)"
-            return myString
+            return "\(peripheralArray[row].advertisementData)"
         }
     }
     
@@ -114,9 +107,6 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
         myCentralManager = CBCentralManager(delegate: self, queue: dispatch_get_main_queue())
         
     }
-    
-
-    
 
     
     func centralManagerDidUpdateState(central: CBCentralManager) {
@@ -156,10 +146,12 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
     
-            let myUUIDString = peripheral.identifier.UUIDString
-            let myRSSIString = String(RSSI.intValue)
-            let myNameString = peripheral.name
-            let advertString = "\(advertisementData)"
+        let p = MotosurfPeripheral(UUID: peripheral.identifier.UUIDString,
+            RSSI: RSSI.intValue,
+            name: peripheral.name,
+            advertisementData: advertisementData)
+        
+        peripheralArray.append(p)
         
 //        var myAdvertisedServices = peripheral.services
       //  var myServices1 = peripheral.services
@@ -169,21 +161,20 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
      //   println(serviceString)
      //   updateOutputText("service:" + serviceString)
     
-            updateOutputText("\r")
-            updateOutputText("UUID: " + myUUIDString)
-            updateOutputText("RSSI: " + myRSSIString)
-            updateOutputText("Name:  \(myNameString)")
-            updateOutputText("advertString: " + advertString)
-
-        
-        
-            let myTuple = (myUUIDString, myRSSIString, "\(myNameString)", advertString )
-        
-            cleanAndSortedArray.append(myTuple)
-        
+            updateLog(p)
             tableView.reloadData()
         
         }
+    
+    func updateLog(p: MotosurfPeripheral)
+    {
+        updateOutputText("\r")
+        updateOutputText("UUID: " + p.UUID)
+        updateOutputText("RSSI: " + String(p.RSSI))
+        updateOutputText("Name:  \(p.name)")
+        updateOutputText("advertString: \(p.advertisementData)")
+    
+    }
 
 }
 

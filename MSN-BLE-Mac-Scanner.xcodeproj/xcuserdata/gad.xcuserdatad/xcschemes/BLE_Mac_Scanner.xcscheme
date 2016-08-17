@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6CCE7F781AD2D4800071AD85"
-               BuildableName = "BLE_Mac_Scanner.app"
+               BuildableName = "MSN-BLE-Mac-Scanner.app"
                BlueprintName = "MSN-BLE-Mac-Scanner"
                ReferencedContainer = "container:MSN-BLE-Mac-Scanner.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6CCE7F781AD2D4800071AD85"
-            BuildableName = "BLE_Mac_Scanner.app"
+            BuildableName = "MSN-BLE-Mac-Scanner.app"
             BlueprintName = "MSN-BLE-Mac-Scanner"
             ReferencedContainer = "container:MSN-BLE-Mac-Scanner.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6CCE7F781AD2D4800071AD85"
-            BuildableName = "BLE_Mac_Scanner.app"
+            BuildableName = "MSN-BLE-Mac-Scanner.app"
             BlueprintName = "MSN-BLE-Mac-Scanner"
             ReferencedContainer = "container:MSN-BLE-Mac-Scanner.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6CCE7F781AD2D4800071AD85"
-            BuildableName = "BLE_Mac_Scanner.app"
+            BuildableName = "MSN-BLE-Mac-Scanner.app"
             BlueprintName = "MSN-BLE-Mac-Scanner"
             ReferencedContainer = "container:MSN-BLE-Mac-Scanner.xcodeproj">
          </BuildableReference>
