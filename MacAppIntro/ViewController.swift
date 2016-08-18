@@ -6,7 +6,12 @@
 import Cocoa
 import CoreBluetooth
 
-class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDelegate, NSTableViewDataSource {
+// TODO 
+// - https://www.raywenderlich.com/118835/os-x-nstableview-tutorial
+// - click on row action
+// - connect to peripheral selected (disconnect the selectedPeripheral)
+
+class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
     
 
     // 
@@ -15,8 +20,9 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
 
     //  BLE Stuff
     var myCentralManager = CBCentralManager()
-
+    var peripherals:[CBPeripheral] = []
     var peripheralArray:[MotosurfPeripheral] = []
+    var selectedPeripheral:CBPeripheral?
 
     
     //  UI Stuff
@@ -55,6 +61,8 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.setDelegate(self)
+        tableView.setDataSource(self)
     }
 
     override var representedObject: AnyObject? {
@@ -62,44 +70,8 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
         // Update the view, if already loaded.
         }
     }
-
-    
-    // NSTableView
-    
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return peripheralArray.count
-    }
-    
-    
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
-        
-        if tableColumn?.identifier == "first" {
-            print(tableColumn?.identifier)
-            return peripheralArray[row].UUID
-        }
-        if tableColumn?.identifier == "second"{
-            return String(peripheralArray[row].RSSI)
-        }
-      
-        if tableColumn?.identifier == "third"{
-            return peripheralArray[row].name
-
-        }
-    
-        if tableColumn?.identifier == "forth"{
-            return "\(peripheralArray[row].advertisementData)"
-            
-        }
-            
-            
-        else{
-            return "\(peripheralArray[row].advertisementData)"
-        }
-    }
     
     //MARK  CoreBluetooth Stuff
-    
-    
     
     // Put CentralManager in the main queue
     required init?(coder aDecoder: NSCoder) {
@@ -146,25 +118,22 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
     
+        // save peripherals in array
+        peripherals.append(peripheral)
+        
+        // create a MSNPeripheral with small data
         let p = MotosurfPeripheral(UUID: peripheral.identifier.UUIDString,
             RSSI: RSSI.intValue,
             name: peripheral.name,
             advertisementData: advertisementData)
         
+        // add it to the TableDataSource
         peripheralArray.append(p)
         
-//        var myAdvertisedServices = peripheral.services
-      //  var myServices1 = peripheral.services
-      //  var serviceString = " service string "
-//        var myArray = advertisementData
-     //   serviceString = "service: \(myArray)"
-     //   println(serviceString)
-     //   updateOutputText("service:" + serviceString)
-    
-            updateLog(p)
-            tableView.reloadData()
+        updateLog(p)
+        tableView.reloadData()
         
-        }
+    }
     
     func updateLog(p: MotosurfPeripheral)
     {
@@ -174,6 +143,50 @@ class ViewController: NSViewController, CBCentralManagerDelegate, CBPeripheralDe
         updateOutputText("Name:  \(p.name)")
         updateOutputText("advertString: \(p.advertisementData)")
     
+    }
+
+}
+
+extension ViewController: NSTableViewDataSource {
+
+    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+        return peripheralArray.count
+    }
+    
+}
+
+extension ViewController: NSTableViewDelegate {
+
+    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        
+        var text: String = ""
+        var cellIdentifier: String = ""
+        let peripheral:MotosurfPeripheral? = peripheralArray[row]
+        
+        if peripheral == nil {
+           return nil
+        }
+        
+        if tableColumn == tableView.tableColumns[0] {
+            text = peripheral!.UUID
+            cellIdentifier = "UUIDCell"
+        } else if tableColumn == tableView.tableColumns[1] {
+            text = String(peripheral!.RSSI)
+            cellIdentifier = "RSSICell"
+        } else if tableColumn == tableView.tableColumns[2] {
+            text = peripheral!.name == nil ? "" : peripheral!.name!
+            cellIdentifier = "NameCell"
+        } else if tableColumn == tableView.tableColumns[3] {
+            text = String(peripheral!.advertisementData)
+            cellIdentifier = "ServicesCell"
+        }
+
+        if let cell = tableView.makeViewWithIdentifier(cellIdentifier, owner: nil) as? NSTableCellView {
+            cell.textField?.stringValue = text
+            return cell
+        }
+        return nil
+        
     }
 
 }
